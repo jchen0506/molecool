@@ -4,15 +4,35 @@ A python package for analyzing and visualizing molecular files. For MolSSI works
 
 Handles the primary functions
 """
-import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-from mpl_toolkits.mplot3d import Axes3D
+from mpl_toolkits.mplot3d import Axes3D  # noqat: F401
 
 
 def calculate_distance(rA, rB):
-    # This function calculates the distance between two points given as numpy arrays.
+    """
+    Caculate the distance between two points
+
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinate of each points.
+
+    Returns
+    -------
+    dist : float
+        The distance between the two points
+
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
+
     d = rA - rB
     dist = np.linalg.norm(d)
     return dist
@@ -24,10 +44,10 @@ def open_pdb(f_loc):
         data = f.readlines()
     c = []
     sym = []
-    for l in data:
-        if "ATOM" in l[0:6] or "HETATM" in l[0:6]:
-            sym.append(l[76:79].strip())
-            c2 = [float(x) for x in l[30:55].split()]
+    for d in data:
+        if "ATOM" in d[0:6] or "HETATM" in d[0:6]:
+            sym.append(d[76:79].strip())
+            c2 = [float(x) for x in d[30:55].split()]
             c.append(c2)
     coords = np.array(c)
     return sym, coords
