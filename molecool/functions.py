@@ -205,6 +205,29 @@ atom_colors = {
 }
 
 
+def calculate_molecular_mass(symbols):
+    """
+    Calculate the mass of a molecule.
+
+    Parameters
+    ----------
+    symbols : list
+        A list of elements.
+
+    Returns
+    -------
+    mass : float
+        The mass of the molecule
+    """
+
+    mass = 0
+
+    for symbol in symbols:
+        mass += atomic_weights[symbol]
+
+    return mass
+
+
 def canvas(with_attribution=True):
     """
     Placeholder function to show example docstring (NumPy format)
