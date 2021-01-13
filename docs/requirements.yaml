@@ -1,12 +1,11 @@
 name: docs
 channels:
 dependencies:
-    # Base depends
+  # Base depends
   - python
   - pip
-
-
+  - numpy
+  - matplotlib
 
     # Pip-only installs
   #- pip:
-
